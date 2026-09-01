@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SADRA MZ | درباره من</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600;700&family=VT323&family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script id="tailwind-cdn" src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <style id="critical-loader-styles">
+        html, body { background: #0a0f18; }
+        body { overflow-x: hidden; }
+        #loader.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scanline-overlay"></div>
+
+    <div id="loader" class="loader-overlay visible" aria-hidden="false">
+        <div class="loader-word">LOADING...</div>
+    </div>
+
+    <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none z-[10000]">
+        <div id="modalInnerContent" class="bg-[var(--secondary-bg)] p-6 md:p-8 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col border border-[var(--border-color)]">
+            <div class="flex justify-between items-center mb-4 pb-4 border-b border-[var(--border-color)]">
+                <h3 id="modalTitle" class="text-2xl md:text-3xl title-font text-[var(--accent-color)]">عنوان پروژه</h3>
+                <button id="closeModal" class="text-[var(--text-secondary-color)] hover:text-[var(--accent-color)] text-3xl transition-colors duration-200">&times;</button>
+            </div>
+            <div id="modalDescriptionContainer" class="overflow-y-auto pr-2 flex-grow">
+                <img id="modalImage" src="" alt="تصویر پروژه" class="w-full h-auto max-h-80 object-contain rounded-lg mb-6 shadow-lg" onerror="this.style.display='none';" />
+                <h4 class="text-xl title-font text-[var(--accent-color)] mb-2">توضیحات:</h4>
+                <div id="modalDescription" class="text-[var(--text-secondary-color)] mb-6 leading-relaxed text-base"></div>
+                <h4 class="text-xl title-font text-[var(--accent-color)] mb-2">فناوری‌های استفاده‌شده:</h4>
+                <div id="modalTech" class="flex flex-wrap gap-2 mb-6"></div>
+            </div>
+            <div class="mt-auto pt-4 border-t border-[var(--border-color)] text-left">
+                <a id="modalProjectLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary mt-2 inline-block">مشاهده پروژه <i class="fas fa-external-link-alt mr-2"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-[1001] border-b border-[var(--border-color)] header-enhanced">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between py-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-[var(--accent-color)] hacker-terminal text-lg font-bold opacity-70 hidden sm:inline-block">$</span>
+                    <a href="../index.html" class="text-2xl font-bold title-font text-[var(--accent-color)] tracking-wider glow-text">
+                        <span class="text-[var(--text-secondary-color)] opacity-30 hidden sm:inline">┌─</span>
+                        SADRA_MZ
+                        <span class="text-[var(--text-secondary-color)] opacity-30 hidden sm:inline">─┐</span>
+                    </a>
+                    <span class="cursor-blink text-[var(--accent-color)] text-xl font-bold hidden sm:inline-block">█</span>
+                </div>
+
+                <ul id="desktop-nav" class="flex items-center space-x-1 md:space-x-2 lg:space-x-3">
+                    <li><a href="../index.html" class="nav-link"><span class="bracket">[</span>خانه<span class="bracket">]</span></a></li>
+                    <li><a href="about.html" class="nav-link"><span class="bracket">[</span>درباره من<span class="bracket">]</span></a></li>
+                    <li><a href="services.html" class="nav-link"><span class="bracket">[</span>خدمات<span class="bracket">]</span></a></li>
+                    <li><a href="projects.html" class="nav-link"><span class="bracket">[</span>پروژه‌ها<span class="bracket">]</span></a></li>
+                    <li><a href="contact.html" class="nav-link"><span class="bracket">[</span>تماس<span class="bracket">]</span></a></li>
+                </ul>
+
+                <div id="hamburger-icon" class="relative z-[10001]">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[7px] text-[var(--text-secondary-color)] opacity-40 hacker-terminal hidden sm:block">MENU</span>
+                </div>
+            </nav>
+            <div class="header-scanline"></div>
+        </div>
+    </header>
+
+    <div id="mobile-nav-panel">
+        <div class="terminal-header-mobile text-center py-4 border-b border-[var(--border-color)]">
+            <span class="hacker-terminal text-sm">// NAVIGATION</span>
+        </div>
+        <ul>
+            <li><a href="../index.html" class="nav-link mobile-nav-link"><span class="bracket">[</span>خانه<span class="bracket">]</span></a></li>
+            <li><a href="about.html" class="nav-link mobile-nav-link"><span class="bracket">[</span>درباره من<span class="bracket">]</span></a></li>
+            <li><a href="services.html" class="nav-link mobile-nav-link"><span class="bracket">[</span>خدمات<span class="bracket">]</span></a></li>
+            <li><a href="projects.html" class="nav-link mobile-nav-link"><span class="bracket">[</span>پروژه‌ها<span class="bracket">]</span></a></li>
+            <li><a href="contact.html" class="nav-link mobile-nav-link"><span class="bracket">[</span>تماس<span class="bracket">]</span></a></li>
+        </ul>
+        <div class="absolute bottom-8 left-0 right-0 text-center text-[10px] text-[var(--text-secondary-color)] opacity-30 hacker-terminal">
+            <span>// v2.0.2 // SECURE //</span>
+        </div>
+    </div>
+
+
+    <main id="main-content" class="container mx-auto px-4 sm:px-6 lg:px-8 py-10"><section id="about-section" class="content-section">
+            <h2 class="section-title">About_Me.init()</h2>
+            <div class="grid md:grid-cols-5 gap-10 items-start">
+                <div class="md:col-span-2 text-center interactive-glow-box">
+                    <img src="https://placehold.co/400x400/101827/00ff9c?text=SADRA" alt="SADRA MZ" class="rounded-lg w-full max-w-[280px] mx-auto mb-4 border-4 border-[var(--accent-color)] shadow-xl hover:shadow-2xl transition-shadow duration-300" onerror="this.src='https://placehold.co/300x300/101827/00ff9c?text=Profile+Img'; this.onerror=null;">
+                    <h3 class="text-3xl title-font text-[var(--accent-color)] mt-4">SADRA MZ</h3>
+                    <p class="text-[var(--text-secondary-color)] text-lg">طراحی سایت | برنامه نویسی | تدوین ویدیو | توسعهٔ مبتنی بر هوش مصنوعی</p>
+                    <p class="text-sm text-gray-500 mt-1">یادگیرندهٔ همیشگی</p>
+                    <div class="flex justify-center gap-4 mt-4">
+                        <a href="https://github.com/yourusername" target="_blank" class="text-[var(--text-secondary-color)] hover:text-[var(--accent-color)] text-xl transition-colors"><i class="fab fa-github"></i></a>
+                       
+                        <a href="mailto:your.email@example.com" class="text-[var(--text-secondary-color)] hover:text-[var(--accent-color)] text-xl transition-colors"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <p class="mb-4 text-lg leading-relaxed">درود! من صدرا هستم، یک حرفه‌ای پویا و نتیجه‌گرا با <strong>1 تا 2 سال سابقهٔ کار در حوزهٔ طراحی سایت</strong>. سفر من با تسلط بر زبان پایتون آغاز شد و سپس به دنیای <strong>طراحی سایت </strong> گسترش یافت، جایی که برای خلق تجربه‌های شهودی و تأثیرگذار تلاش می‌کنم</p>
+                    <p class="mb-4 text-lg leading-relaxed">در سه سال اخیر، تمرکز من بر <strong> طراحی سایت</strong> متمرکز شده است. این شامل ساخت قالب‌ها و وب سایت های مورد نظر شما با تأکید ویژه بر <strong>مفاهیم فارسی‌زبان</strong> است. باور دارم که فضای دیجیتال فارسی پتانسیل عظیم و دست‌نخورده‌ای برای نوآوری دارد</p>
+                    
+                    
+                </div>
+            </div>
+            <div class="mt-16 pt-10 border-t border-[var(--border-color)]">
+                <h3 class="text-2xl md:text-3xl title-font text-[var(--accent-color)] mb-10 text-center">// Timeline_Highlights</h3>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-item-content interactive-glow-box tilt-effect">
+                            <span class="timeline-date">1405</span>
+                            <h4 class="font-semibold mb-2">طراحی سایت به صورت حرفه ای</h4>
+                            <p class="text-sm text-[var(--text-secondary-color)]">طراحی وب سایت ها و قالب های حرفه ای</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-item-content interactive-glow-box tilt-effect">
+                            <span class="timeline-date">1404</span>
+                            <h4 class="font-semibold mb-2">شروع یادگیری طراحی سایت</h4>
+                            <p class="text-sm text-[var(--text-secondary-color)]">شروع یادگیری طراحی سایت با زبان های Html , Css و Js</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-item-content interactive-glow-box tilt-effect">
+                            <span class="timeline-date">1404</span>
+                            <h4 class="font-semibold mb-2">یادگیری زبان پایتون</h4>
+                            <p class="text-sm text-[var(--text-secondary-color)]">شروع یادگیری زبان پایتون و پیشرفت در این زبان</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-item-content interactive-glow-box tilt-effect">
+                            <span class="timeline-date">همیشه</span>
+                            <h4 class="font-semibold mb-2">یادگیری پیوسته </h4>
+                            <p class="text-sm text-[var(--text-secondary-color)]">توسعهٔ فعال دانش در علوم کامپیوتر، هوش مصنوعی، فناوری‌های نوین وب . متعهد به یادگیری مادام‌العمر.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section></main>
+
+<div id="custom-context-menu">
+        <ul>
+            <li><a href="../index.html" class="context-menu-link"><i class="fas fa-home"></i>خانه</a></li>
+            <li><a href="about.html" class="context-menu-link"><i class="fas fa-user-secret"></i>درباره من</a></li>
+            <li><a href="services.html" class="context-menu-link"><i class="fas fa-concierge-bell"></i>خدمات</a></li>
+            <li><a href="projects.html" class="context-menu-link"><i class="fas fa-briefcase"></i>پروژه‌ها</a></li>
+            <li><a href="contact.html" class="context-menu-link"><i class="fas fa-envelope"></i>تماس</a></li>
+        </ul>
+        <div class="context-menu-divider"></div>
+        <div class="context-social-links">
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" title="گیت‌هاب"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" title="لینکدین"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/yourusername" target="_blank" rel="noopener noreferrer" title="تلگرام"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://wa.me/yourphonenumber" target="_blank" rel="noopener noreferrer" title="واتساپ"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+
+    <div id="scroll-progress-container">
+        <svg id="scroll-progress-circle" viewBox="0 0 36 36">
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--border-color)" stroke-width="2.5" />
+            <path id="progress-bar" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--accent-color)" stroke-width="2.5" stroke-dasharray="100, 100" stroke-dashoffset="100" />
+        </svg>
+        <button id="scroll-to-top-btn"><i class="fas fa-arrow-up"></i></button>
+    </div>
+
+    <footer class="text-center py-8 mt-16">
+        <div class="mb-6 flex justify-center items-center space-x-6">
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary-color)] hover:text-[var(--accent-color)] text-3xl transition-all duration-300 transform hover:scale-125"><i class="fab fa-github"></i></a>
+            <a href="mailto:your.email@example.com" class="text-[var(--text-secondary-color)] hover:text-[var(--accent-color)] text-3xl transition-all duration-300 transform hover:scale-125"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p class="text-sm text-gray-400">&copy; <span id="currentYear">2026</span> SADRA MZ. تمامی حقوق محفوظ است.</p>
+        <p class="text-xs text-gray-500 mt-2">ارتباط برقرار شد. یکپارچگی سیستم: <span class="hacker-terminal text-xs">۱۰۰٪</span>. در انتظار فرمان بعدی...</p>
+    </footer>
+
+    <script src="../js/scramble.js"></script>
+    <script src="../js/matrix.js"></script>
+    <script src="../js/main.js"></script>
+
+</body>
+</html>
